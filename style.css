@@ -1,65 +1,179 @@
-/* Reinicio básico */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+/* Importación de fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+
+:root {
+    /* Paleta de colores Dark Mode / High-Tech */
+    --color-dark-bg: #1f2833; /* Fondo principal muy oscuro */
+    --color-dark-surface: #2b3a4a; /* Superficie de tarjetas */
+    --color-accent-blue: #66fcf1; /* Cian/Neón vibrante (Acento primario) */
+    --color-accent-green: #45a29e; /* Verde azulado (Acento secundario) */
+    --color-text-light: #c5c6c7; /* Texto principal */
+    --color-text-darker: #7e8c95; /* Texto secundario */
+    --radius-large: 16px;
+    --shadow-subtle: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
-/* Fondo general y centrado del contenido */
+/* --- Estilos Generales --- */
 body {
-    background: #f4f4f8;
-    padding: 30px;
-    color: #333;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--color-dark-bg);
+    color: var(--color-text-light);
+    line-height: 1.6;
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
 }
 
-/* Títulos */
+/* Contenedor principal */
+body > * {
+    max-width: 750px;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+/* --- Títulos y Encabezados (Efecto Neón) --- */
 h1, h2, h3 {
-    margin-bottom: 15px;
-    color: #222;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-/* Select */
-select {
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 8px;
-    border: 1px solid #aaa;
-    background: white;
-    cursor: pointer;
-    transition: 0.2s;
-}
-select:hover {
-    border-color: #555;
+h1 {
+    font-size: 3em;
+    color: var(--color-accent-blue);
+    text-shadow: 0 0 10px rgba(102, 252, 241, 0.5), 0 0 20px rgba(102, 252, 241, 0.3); /* Efecto neón */
+    border-bottom: 3px solid var(--color-accent-blue);
+    padding-bottom: 10px;
+    margin-bottom: 40px;
 }
 
-/* Separadores */
+h2 {
+    font-size: 1.8em;
+    color: var(--color-accent-green);
+    margin-top: 30px;
+}
+
+h3 {
+    font-size: 1.3em;
+    color: var(--color-text-light);
+    font-weight: 600;
+    border-bottom: 1px dashed var(--color-text-darker);
+    padding-bottom: 5px;
+    margin-top: 30px;
+}
+
 hr {
-    margin: 25px 0;
     border: none;
-    height: 1px;
-    background: #ccc;
+    border-top: 1px solid var(--color-dark-surface);
+    width: 100%;
+    margin: 30px 0;
 }
 
-/* Listas */
-ul {
+/* --- Selector de País (Estilo Input High-Tech) --- */
+#country-list {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 1em;
+    font-weight: 400;
+    cursor: pointer;
+    background-color: var(--color-dark-surface);
+    color: var(--color-text-light);
+    border: 2px solid var(--color-dark-surface);
+    border-radius: var(--radius-large);
+    box-shadow: var(--shadow-subtle);
+    transition: all 0.3s ease;
+    appearance: none;
+    
+    /* Icono de flecha personalizado y cian */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2366fcf1' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 20px;
+}
+
+#country-list:hover {
+    border-color: var(--color-accent-green);
+}
+
+#country-list:focus {
+    border-color: var(--color-accent-blue);
+    box-shadow: 0 0 10px rgba(102, 252, 241, 0.5); /* Sombra luminosa al enfocar */
+    outline: none;
+}
+
+/* --- Lista de Datos del País (Estilo Card con Elevación) --- */
+#values-list {
     list-style: none;
-    padding-left: 0;
+    padding: 25px;
+    margin: 20px 0;
+    background-color: var(--color-dark-surface);
+    border-radius: var(--radius-large);
+    box-shadow: var(--shadow-subtle);
+    border-left: 5px solid var(--color-accent-blue); /* Borde de acento */
 }
 
-ul li {
-    background: white;
-    padding: 10px 14px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    font-size: 16px;
+#values-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid #3d4a5c; /* Separador más sutil */
+    font-weight: 300;
 }
 
-/* Imagen de la bandera */
-img {
-    margin-top: 10px;
-    width: 140px;
+#values-list li:last-of-type {
+    border-bottom: none;
+}
+
+/* Estilo para el elemento de lenguaje (Botón de Acción Neón) */
+#values-list li[data-id="language"] {
+    cursor: pointer;
+    color: var(--color-accent-blue);
+    font-weight: 600;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+    padding: 12px 0;
+}
+
+#values-list li[data-id="language"]:hover {
+    color: #ffffff;
+    text-shadow: 0 0 5px var(--color-accent-blue);
+}
+
+/* Bandera principal (Efecto Borde 3D) */
+#values-list img {
+    width: 100%;
+    max-height: 250px;
+    object-fit: contain;
+    display: block;
+    margin: 25px auto 0;
+    border: 3px solid var(--color-text-light); /* Borde visible */
     border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6); /* Sombra profunda */
+}
+
+/* --- Lista de Países con el Mismo Idioma (Grid de Banderas con Resplandor) --- */
+#lenguages-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 15px;
+    list-style: none;
+    padding: 20px;
+    background-color: var(--color-dark-surface);
+    border-radius: var(--radius-large);
+    border: 1px solid var(--color-accent-green);
+}
+
+#lenguages-list img {
+    width: 100%;
+    height: 60px;
+    object-fit: cover;
+    border: 1px solid var(--color-dark-surface);
+    border-radius: 4px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#lenguages-list img:hover {
+    transform: scale(1.05);
+    border-color: var(--color-accent-blue);
+    box-shadow: 0 0 10px rgba(102, 252, 241, 0.7); /* Resplandor al pasar el ratón */
 }
